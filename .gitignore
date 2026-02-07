@@ -49,3 +49,26 @@ qtcreator-*
 
 # Catkin custom files
 CATKIN_IGNORE
+
+
+# --- ROS 2 Build Artifacts ---
+install/
+build/
+log/
+
+# --- Python ---
+**/__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# --- VS Code ---
+.vscode/
+# Note: Keep .devcontainer/ as it is shared config, 
+# but ignore local workspace state.
+.vscode/settings.json
+.vscode/tasks.json
+
+# --- Docker & System ---
+.DS_Store
+*.swp

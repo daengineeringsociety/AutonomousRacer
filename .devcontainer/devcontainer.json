@@ -1,0 +1,25 @@
+{
+    "name": "ROS 2 Humble Dev",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools",
+                "ms-python.python",
+                "ms-iot.vscode-ros"
+            ]
+        }
+    },
+    "remoteUser": "ros_user",
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/home/ros_user/ros2_ws,type=bind"
+    ],
+    "runArgs": [
+        "--network=host",
+        "--cap-add=SYS_PTRACE",
+        "--security-opt=seccomp=unconfined"
+    ]
+}
