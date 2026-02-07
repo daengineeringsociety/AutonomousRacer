@@ -1,25 +1,17 @@
 {
-    "name": "ROS 2 Humble Dev",
-    "build": {
-        "dockerfile": "Dockerfile",
-        "context": ".."
-    },
+    "name": "DeepRacer ROS 2 Dev",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "ros_dev",
+    "workspaceFolder": "/workspaces/deepracer_project",
     "customizations": {
-        "vscode": {
-            "extensions": [
-                "ms-vscode.cpptools",
-                "ms-python.python",
-                "ms-iot.vscode-ros"
-            ]
-        }
+      "vscode": {
+        "extensions": [
+          "ms-iot.vscode-ros",
+          "ms-vscode.cpptools",
+          "redhat.vscode-yaml"
+        ]
+      }
     },
-    "remoteUser": "ros_user",
-    "mounts": [
-        "source=${localWorkspaceFolder},target=/home/ros_user/ros2_ws,type=bind"
-    ],
-    "runArgs": [
-        "--network=host",
-        "--cap-add=SYS_PTRACE",
-        "--security-opt=seccomp=unconfined"
-    ]
-}
+    "shutdownAction": "stopContainer",
+    "postCreateCommand": "rosdep update && rosdep install --from-paths src --ignore-src -y"
+  }

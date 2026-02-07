@@ -1,15 +1,14 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>my_robot_pkg</name>
+  <name>deepracer_bringup</name>
   <version>0.1.0</version>
-  <description>Sample ROS 2 package</description>
-  <maintainer email="user@example.com">Your Name</maintainer>
+  <description>Holds Launch and SLAM files for deepracer Project</description>
+  <maintainer email="ayansyedca@gmail.com">Ayan Syed</maintainer>
   <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <depend>net-tools</depend>
-
+  <depend>ros-humble-rtabmap-ros</depend>
   <export>
     <build_type>ament_cmake</build_type>
   </export>
