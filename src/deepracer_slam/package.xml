@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>deepracer_bringup</name>
+  <name>deepracer_slam</name>
   <version>0.1.0</version>
   <description>Holds Launch and SLAM files for deepracer Project</description>
   <maintainer email="ayansyedca@gmail.com">Ayan Syed</maintainer>
@@ -8,7 +8,6 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <depend>ros-humble-rtabmap-ros</depend>
   <export>
     <build_type>ament_cmake</build_type>
   </export>

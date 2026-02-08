@@ -13,5 +13,11 @@
       }
     },
     "shutdownAction": "stopContainer",
-    "postCreateCommand": "rosdep update && rosdep install --from-paths src --ignore-src -y"
+    "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+    },
+    "containerEnv": {
+        "SHELL": "/bin/bash"
+    },
+    "postCreateCommand": "sudo rosdep init && rosdep update && rosdep install --from-paths src --ignore-src -y"
   }

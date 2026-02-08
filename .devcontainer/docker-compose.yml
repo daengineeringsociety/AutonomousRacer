@@ -1,6 +1,8 @@
 services:
   ros_dev:
-    image: althack/ros2:humble-dev 
+    build: 
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - ..:/workspaces/deepracer_project:cached
     network_mode: host # Critical for ROS 2 Discovery & Foxglove
@@ -8,4 +10,4 @@ services:
       - ROS_DOMAIN_ID=42
     privileged: true
     command: sleep infinity
-    user: ros
+    user: daes

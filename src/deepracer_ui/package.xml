@@ -8,11 +8,8 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <depend>ros-humble-nav2-bringup</depend>
-  <depend>ros-humble-rtabmap-ros</depend>
-  <depend>ros-humble-foxglove-bridge</depend>
-  <depend>rros-humble-teleop-twist-keyboard</depend>
-  <depend>python3-colcon-common-extensions</depend>
+
+  <depend>ros-foxy-foxglove-bridge</depend>
 
 
   <export>
