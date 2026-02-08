@@ -1,11 +1,15 @@
 FROM ros:foxy-ros-core
 
-RUN apt-get update && apt-get install -y \
+
+RUN apt-get update
+
+RUN apt-get install -y \
     sudo \
     git \               
     bash-completion \
     ros-foxy-rmw-cyclonedds-cpp \
     python3-rosdep \
+    curl \
     kmod \
     && rm -rf /var/lib/apt/lists/*
 
