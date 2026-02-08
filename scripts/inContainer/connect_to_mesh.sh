@@ -1,7 +1,13 @@
 #!/bin/bash
 # You get the Join Code from the Husarnet Dashboard
+echo "Setting connection constants"
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 export CYCLONEDDS_URI=file:///workspaces/deepracer_project/scripts/inContainer/husarnet_config.xml
+export ROS_DOMAIN_ID=42
+
+echo "Disabling Container Firewall"
+sudo ufw disable
+
 sudo husarnet join ayanuddin2006a@gmail.com/bRqH6yMthD5WnssgLxmxye #Note add a hostname here for your computer is husarnet
 sudo husarnet start
 

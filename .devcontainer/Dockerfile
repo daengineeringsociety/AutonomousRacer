@@ -11,6 +11,8 @@ RUN apt-get install -y \
     python3-rosdep \
     curl \
     kmod \
+    ufw \
+    vim \
     && rm -rf /var/lib/apt/lists/*
 
 # Create the 'daes' user
