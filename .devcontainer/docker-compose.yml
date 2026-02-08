@@ -6,9 +6,14 @@ services:
     volumes:
       - ..:/workspaces/deepracer_project:cached
       - ~/.gitconfig:/home/daes/.gitconfig:ro
-    network_mode: host
     environment:
       - ROS_DOMAIN_ID=42
     privileged: true
     command: sleep infinity
     user: daes
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0 # Husarnet uses IPv6 internally

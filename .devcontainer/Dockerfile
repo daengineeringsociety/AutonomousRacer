@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     bash-completion \
     ros-foxy-rmw-cyclonedds-cpp \
     python3-rosdep \
+    kmod \
     && rm -rf /var/lib/apt/lists/*
 
 # Create the 'daes' user
@@ -17,6 +18,8 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
+
+RUN curl https://install.husarnet.com/install.sh | bash
 
 # Set up the ROS environment for the 'daes' user
 RUN echo "source /opt/ros/foxy/setup.bash" >> /home/$USERNAME/.bashrc

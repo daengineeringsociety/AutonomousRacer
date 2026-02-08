@@ -18,7 +18,10 @@
         "terminal.integrated.defaultProfile.linux": "bash"
     },
     "containerEnv": {
-        "SHELL": "/bin/bash"
+        "SHELL": "/bin/bash",
+        "ROS_DOMAIN_ID": "42",
+        "RMW_IMPLEMENTATION": "rmw_cyclonedds_cpp",
+        "CYCLONEDDS_URI": "file:///var/tmp/husarnet-cyclone.xml"
     },
     "features": {
         "ghcr.io/devcontainers/features/git:1": {}
