@@ -1,30 +1,15 @@
 #!/bin/bash
+# Move to the project root (where .devcontainer/ resides)
+cd "$(dirname "$0")/../.."
 
-# Configuration - Matches your Mac setup
-CONTAINER_NAME="autonomousracer_devcontainer-ros_dev-1"
-IMAGE_NAME="your-docker-username/deepracer-foxy:latest" # Change to your image
-WORKSPACE="/workspaces/deepracer_project"
-LOCAL_DIR="$(pwd)" # Assumes you run this from your repo root
+echo "Starting Container on DeepRacer using Docker Compose..."
 
-echo "Starting $CONTAINER_NAME on DeepRacer..."
+# 1. Pull the latest image if you've updated it on Docker Hub
+# docker-compose -f .devcontainer/docker-compose.yml pull
 
-# Check if an old stopped version exists and remove it
-if [ "$(docker ps -aq -f name=$CONTAINER_NAME)" ]; then
-    echo "Cleaning up old container..."
-    docker rm -f $CONTAINER_NAME
-fi
+# 2. Start the container in detached mode
+# We use -f to point to the compose file inside the .devcontainer folder
 
-docker run -d \
-  --name "$CONTAINER_NAME" \
-  --privileged \
-  --network bridge \
-  --cap-add NET_ADMIN \
-  --device /dev/net/tun:/dev/net/tun \
-  --sysctl net.ipv6.conf.all.disable_ipv6=0 \
-  -v "$LOCAL_DIR:$WORKSPACE" \
-  -e ROS_DOMAIN_ID=42 \
-  -w "$WORKSPACE" \
-  "$IMAGE_NAME" \
-  sleep infinity
+docker-compose -p autonomousracer_devcontainer -f .devcontainer/docker-compose.yml up -d
 
-echo "Container is UP. You can now use your enter script."
+echo "Container is UP. Use your enter script to jump in."
