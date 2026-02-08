@@ -12,12 +12,16 @@
         ]
       }
     },
+    "remoteUser": "daes",
     "shutdownAction": "stopContainer",
     "settings": {
         "terminal.integrated.defaultProfile.linux": "bash"
     },
     "containerEnv": {
         "SHELL": "/bin/bash"
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {}
     },
     "postCreateCommand": "sudo rosdep init && rosdep update && rosdep install --from-paths src --ignore-src -y"
   }

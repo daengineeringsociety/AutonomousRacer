@@ -5,7 +5,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ..:/workspaces/deepracer_project:cached
-    network_mode: host # Critical for ROS 2 Discovery & Foxglove
+      - ~/.gitconfig:/home/daes/.gitconfig:ro
+    network_mode: host
     environment:
       - ROS_DOMAIN_ID=42
     privileged: true
