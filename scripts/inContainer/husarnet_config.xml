@@ -11,11 +11,6 @@
     </General>
     <Discovery>
       <Peers>
-        <Peer address='fc94:cc10:cad9:88b0:7cdb:4929:0c48:8cad'/>
-        <Peer address='fc94:c7f6:c650:35d2:8587:e3ba:9983:ba6c'/>
-        <Peer address='fc94:504c:0fb7:c48b:14b2:ef83:17a0:c72f'/>
-        <Peer address='fc94:504c:0fb7:c48b:14b2:ef83:17a0:c72f'/>
-        <Peer address='fc94:9445:860f:ecd9:a55a:9aa8:7be3:47de'/>
       </Peers>
       <ParticipantIndex>auto</ParticipantIndex>
       <MaxAutoParticipantIndex>40</MaxAutoParticipantIndex>

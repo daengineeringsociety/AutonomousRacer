@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /deepracer/AutonomousRacer/
+cd /home/deepracer/deepracer/AutonomousRacer
 
 echo "Stopping and Removing old Containers"
 docker stop autonomousracer_devcontainer_ros_dev-1 
