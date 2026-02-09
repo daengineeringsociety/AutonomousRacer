@@ -11,6 +11,8 @@
     </General>
     <Discovery>
       <Peers>
+        <Peer address='fc94:504c:0fb7:c48b:14b2:ef83:17a0:c72f'/>
+        <Peer address='fc94:504c:0fb7:c48b:14b2:ef83:17a0:c72f'/>
       </Peers>
       <ParticipantIndex>auto</ParticipantIndex>
       <MaxAutoParticipantIndex>40</MaxAutoParticipantIndex>
