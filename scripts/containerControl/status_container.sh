@@ -1,5 +1,5 @@
 #!/bin/bash
-CONTAINER_ID="autonomousracer_devcontainer-ros_dev-1"
+CONTAINER_ID="autonomousracer_devcontainer_ros_dev-1"
 
 if [ "$(docker inspect -f '{{.State.Running}}' "$CONTAINER_ID" 2>/dev/null)" = "true" ]; then
     STATUS=$(docker inspect -f '{{.State.Status}}' $CONTAINER_ID)

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONTAINER_NAME="autonomousracer_devcontainer-ros_dev-1"
+CONTAINER_NAME="autonomousracer_devcontainer_ros_dev-1"
 
 if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
     echo "Stopping $CONTAINER_NAME..."
