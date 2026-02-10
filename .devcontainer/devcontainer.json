@@ -18,13 +18,10 @@
         "terminal.integrated.defaultProfile.linux": "bash"
     },
     "containerEnv": {
-        "SHELL": "/bin/bash",
-        "ROS_DOMAIN_ID": "42",
-        "RMW_IMPLEMENTATION": "rmw_cyclonedds_cpp",
-        "CYCLONEDDS_URI": "file:///var/tmp/husarnet-cyclone.xml"
+        "SHELL": "/bin/bash"
     },
     "features": {
         "ghcr.io/devcontainers/features/git:1": {}
     },
-    "postCreateCommand": "echo 'Installing Apt Reqs' && sudo apt update && xargs sudo apt install -y < apt-installs.txt"
+    "postCreateCommand": "echo 'Installing Apt Reqs' && sudo apt update && xargs sudo apt install -y < apt-installs.txt && echo 'You are all good to go!'"
   }

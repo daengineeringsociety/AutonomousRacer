@@ -25,12 +25,6 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
-RUN curl https://install.husarnet.com/install.sh | bash
-
-RUN ARCH=$(uname -m | sed 's/x86_64/amd64/' | sed 's/aarch64/arm64/') && \
-    curl -L "https://github.com/husarnet/husarnet-dds/releases/download/v1.3.6/husarnet-dds-linux-$ARCH" -o /usr/bin/husarnet-dds && \
-    chmod +x /usr/bin/husarnet-dds
-
 # Set up the ROS environment for the 'daes' user
 RUN echo "source /opt/ros/foxy/setup.bash" >> /home/$USERNAME/.bashrc
 
