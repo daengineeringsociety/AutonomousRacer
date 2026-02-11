@@ -9,5 +9,6 @@ ros2 launch nav2_bringup tb3_simulation_launch.py \
   headless:=True \
   use_rviz:=False \
   use_sim_time:=True \
+  params_file:=/opt/ros/foxy/share/nav2_bringup/params/nav2_params.yaml \
   world:=/opt/ros/foxy/share/nav2_bringup/worlds/waffle.model \
   map:=/opt/ros/foxy/share/nav2_bringup/maps/turtlebot3_world.yaml
