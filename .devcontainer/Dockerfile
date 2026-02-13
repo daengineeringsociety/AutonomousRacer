@@ -1,18 +1,27 @@
 FROM ros:foxy-ros-core
 
+# Add universe repo for nav2, turtlebot3, rosbridge etc.
+RUN apt-get update && apt-get install -y \
+    software-properties-common \
+    && add-apt-repository universe \
+    && apt-get update \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update
-
-RUN apt-get install -y \
+# Install system and ROS packages
+RUN apt-get update && apt-get install -y \
     sudo \
-    git \               
+    git \
     bash-completion \
-    ros-foxy-rmw-cyclonedds-cpp \
-    python3-rosdep \
     curl \
     kmod \
     ufw \
     vim \
+    iputils-ping \
+    ros-foxy-rmw-cyclonedds-cpp \
+    ros-foxy-teleop-twist-keyboard \
+    ros-foxy-nav2-bringup \
+    ros-foxy-rosbridge-suite \
+    python3-rosdep \
     && rm -rf /var/lib/apt/lists/*
 
 # Create the 'daes' user
@@ -25,8 +34,10 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
+# Install Husarnet
 RUN curl https://install.husarnet.com/install.sh | bash
 
+# Install husarnet-dds for the correct architecture
 RUN ARCH=$(uname -m | sed 's/x86_64/amd64/' | sed 's/aarch64/arm64/') && \
     curl -L "https://github.com/husarnet/husarnet-dds/releases/download/v1.3.6/husarnet-dds-linux-$ARCH" -o /usr/bin/husarnet-dds && \
     chmod +x /usr/bin/husarnet-dds
