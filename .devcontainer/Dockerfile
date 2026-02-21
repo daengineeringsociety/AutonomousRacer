@@ -1,18 +1,28 @@
 FROM ros:foxy-ros-core
 
 
-RUN apt-get update
+# Add universe repo for nav2, turtlebot3, rosbridge etc.
+RUN apt-get update && apt-get install -y \
+    software-properties-common \
+    && add-apt-repository universe \
+    && apt-get update \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get install -y \
+# Install system and ROS packages
+RUN apt-get update && apt-get install -y \
     sudo \
-    git \               
+    git \
     bash-completion \
-    ros-foxy-rmw-cyclonedds-cpp \
-    python3-rosdep \
     curl \
     kmod \
     ufw \
     vim \
+    iputils-ping \
+    ros-foxy-rmw-cyclonedds-cpp \
+    ros-foxy-teleop-twist-keyboard \
+    ros-foxy-nav2-bringup \
+    ros-foxy-rosbridge-suite \
+    python3-rosdep \
     && rm -rf /var/lib/apt/lists/*
 
 # Create the 'daes' user

@@ -1,9 +1,1 @@
-ros-foxy-teleop-twist-keyboard
-ros-foxy-nav2-bringup
-ros-foxy-rosbridge-suite
-iputils-ping
-ros-foxy-robot-state-publisher 
 ros-foxy-turtlebot3-gazebo
-ros-foxy-turtlebot3-description 
-ros-foxy-turtlebot3-msgs 
-ros-foxy-rviz2

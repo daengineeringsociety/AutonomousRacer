@@ -8,6 +8,8 @@ services:
       - ~/.gitconfig:/home/daes/.gitconfig:ro
     environment:
       - ROS_DOMAIN_ID=42
+    ports:
+      - "9876:9876/udp"
     privileged: true
     command: sleep infinity
     user: daes

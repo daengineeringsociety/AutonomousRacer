@@ -23,5 +23,5 @@
     "features": {
         "ghcr.io/devcontainers/features/git:1": {}
     },
-    "postCreateCommand": "echo 'Installing Apt Reqs' && sudo apt update && xargs sudo apt install -y < apt-installs.txt && echo 'You are all good to go!'"
+    "postCreateCommand": "chmod +x /workspaces/deepracer_project/.devcontainer/setupContainer.sh && /workspaces/deepracer_project/.devcontainer/setupContainer.sh"
   }

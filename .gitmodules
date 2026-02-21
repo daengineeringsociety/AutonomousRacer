@@ -1,0 +1,4 @@
+[submodule "src/arkit_ros2_bridge"]
+	path = src/arkit_ros2_bridge
+	url = https://github.com/ion206/arkit_ros2_bridge
+	branch = main
