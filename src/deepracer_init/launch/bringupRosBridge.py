@@ -18,13 +18,7 @@ def generate_launch_description():
         AnyLaunchDescriptionSource(rosbridge_launch_path)
     )
 
-    run_setup_script = ExecuteProcess(
-        cmd=['./setupFoxglove.sh'],
-        cwd='/workspaces/deepracer_project/scripts/inContainer/', # Sets the working directory
-        output='screen'
-    )
 
     return LaunchDescription([
-        run_setup_script,
         included_launch
     ])

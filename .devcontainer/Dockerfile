@@ -23,6 +23,8 @@ RUN apt-get update && apt-get install -y \
     ros-foxy-nav2-bringup \
     ros-foxy-rosbridge-suite \
     python3-rosdep \
+    python3-pip \
+    python3-colcon-common-extensions \
     && rm -rf /var/lib/apt/lists/*
 
 # Create the 'daes' user
