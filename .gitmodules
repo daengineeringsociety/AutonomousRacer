@@ -2,3 +2,6 @@
 	path = src/arkit_ros2_bridge
 	url = https://github.com/ion206/arkit_ros2_bridge
 	branch = main
+[submodule "src/simulation/aws-robomaker-bookstore-world"]
+	path = src/simulation/aws-robomaker-bookstore-world
+	url = https://github.com/aws-robotics/aws-robomaker-bookstore-world.git
