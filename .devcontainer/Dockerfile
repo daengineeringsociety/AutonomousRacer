@@ -25,6 +25,7 @@ RUN apt-get update && apt-get install -y \
     python3-rosdep \
     python3-pip \
     python3-colcon-common-extensions \
+    ros-foxy-rtabmap* \
     && rm -rf /var/lib/apt/lists/*
 
 # Create the 'daes' user
