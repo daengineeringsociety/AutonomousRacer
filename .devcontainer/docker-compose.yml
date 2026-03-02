@@ -9,7 +9,9 @@ services:
     environment:
       - ROS_DOMAIN_ID=42
     ports:
-      - "9876:9876/udp"
+      # Force bind to all Mac interfaces explicitly 
+      - "8765:8765/udp"
+      - "0.0.0.0:8765:8765/udp"
     privileged: true
     command: sleep infinity
     user: daes
