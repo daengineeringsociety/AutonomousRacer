@@ -1,0 +1,151 @@
+# Working Mapping
+
+ros2 launch deepracer_init bringupRosBridge.launch.py
+
+ros2 run tf2_ros static_transform_publisher 0 0 0 -1.5708 0 -1.5708 camera_link camera_optical_link
+
+ros2 bag play bags/iphoneInput/bedroom/ --remap /tf:=/tf_dump -l
+
+python3 sync.py (data sync and resizing script)
+
+sync.py is for bags
+
+ros2 launch rtabmap_launch rtabmap.launch.py \
+    rtabmap_args:="--delete_db_on_start" \
+    frame_id:=camera_link \
+    odom_topic:=/synced/odom \
+    rgb_topic:=/synced/rgb/image_raw \
+    depth_topic:=/synced/depth/image_raw \
+    camera_info_topic:=/synced/camera_info \
+    visual_odometry:=false \
+    approx_sync:=false \
+    rtabmapviz:=false
+
+
+Logs:
+[INFO] [launch]: All log files can be found below /home/daes/.ros/log/2026-03-06-03-33-48-716773-docker-desktop-10051
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [rtabmap-1]: process started with pid [10173]
+[rtabmap-1] [INFO] [1772768079.524986216] [rtabmap.rtabmap]: rtabmap(maps): map_filter_radius          = 0.000000
+[rtabmap-1] [INFO] [1772768079.539443716] [rtabmap.rtabmap]: rtabmap(maps): map_filter_angle           = 30.000000
+[rtabmap-1] [INFO] [1772768079.539569341] [rtabmap.rtabmap]: rtabmap(maps): map_cleanup                = true
+[rtabmap-1] [INFO] [1772768079.540358966] [rtabmap.rtabmap]: rtabmap(maps): map_always_update          = false
+[rtabmap-1] [INFO] [1772768079.540380257] [rtabmap.rtabmap]: rtabmap(maps): map_empty_ray_tracing      = true
+[rtabmap-1] [INFO] [1772768079.540387591] [rtabmap.rtabmap]: rtabmap(maps): cloud_output_voxelized     = true
+[rtabmap-1] [INFO] [1772768079.540395924] [rtabmap.rtabmap]: rtabmap(maps): cloud_subtract_filtering   = false
+[rtabmap-1] [INFO] [1772768079.540399549] [rtabmap.rtabmap]: rtabmap(maps): cloud_subtract_filtering_min_neighbors = 2
+[rtabmap-1] [INFO] [1772768079.553261382] [rtabmap.rtabmap]: rtabmap(maps): octomap_tree_depth         = 16
+[rtabmap-1] [INFO] [1772768079.793299299] [rtabmap.rtabmap]: rtabmap: frame_id      = camera_link
+[rtabmap-1] [INFO] [1772768079.793411966] [rtabmap.rtabmap]: rtabmap: map_frame_id  = map
+[rtabmap-1] [INFO] [1772768079.793419674] [rtabmap.rtabmap]: rtabmap: log_to_rosout_level  = 4
+[rtabmap-1] [INFO] [1772768079.793423466] [rtabmap.rtabmap]: rtabmap: initial_pose  = 
+[rtabmap-1] [INFO] [1772768079.793427091] [rtabmap.rtabmap]: rtabmap: use_action_for_goal  = false
+[rtabmap-1] [INFO] [1772768079.793430674] [rtabmap.rtabmap]: rtabmap: tf_delay      = 0.050000
+[rtabmap-1] [INFO] [1772768079.793438341] [rtabmap.rtabmap]: rtabmap: tf_tolerance  = 0.100000
+[rtabmap-1] [INFO] [1772768079.793446299] [rtabmap.rtabmap]: rtabmap: odom_sensor_sync   = false
+[rtabmap-1] [INFO] [1772768079.793452216] [rtabmap.rtabmap]: rtabmap: gen_scan  = false
+[rtabmap-1] [INFO] [1772768079.793457841] [rtabmap.rtabmap]: rtabmap: gen_depth  = false
+[rtabmap-1] [INFO] [1772768079.975765507] [rtabmap.rtabmap]: RTAB-Map detection rate = 1.000000 Hz
+[rtabmap-1] [INFO] [1772768079.999891382] [rtabmap.rtabmap]: rtabmap: Deleted database "/home/daes/.ros/rtabmap.db" (--delete_db_on_start or -d are set).
+[rtabmap-1] [INFO] [1772768080.000230716] [rtabmap.rtabmap]: rtabmap: Using database from "/home/daes/.ros/rtabmap.db" (0 MB).
+[rtabmap-1] [INFO] [1772768080.686342758] [rtabmap.rtabmap]: rtabmap: Database version = "0.21.1".
+[rtabmap-1] [INFO] [1772768080.695439924] [rtabmap.rtabmap]: rtabmap: SLAM mode (Mem/IncrementalMemory=true)
+[rtabmap-1] [INFO] [1772768080.960717508] [rtabmap.rtabmap]: Setup callbacks
+[rtabmap-1] [INFO] [1772768081.002810633] [rtabmap.rtabmap]: rtabmap: subscribe_depth = true
+[rtabmap-1] [INFO] [1772768081.002953716] [rtabmap.rtabmap]: rtabmap: subscribe_rgb = true
+[rtabmap-1] [INFO] [1772768081.002967591] [rtabmap.rtabmap]: rtabmap: subscribe_stereo = false
+[rtabmap-1] [INFO] [1772768081.002971925] [rtabmap.rtabmap]: rtabmap: subscribe_rgbd = false (rgbd_cameras=1)
+[rtabmap-1] [INFO] [1772768081.002976133] [rtabmap.rtabmap]: rtabmap: subscribe_odom_info = false
+[rtabmap-1] [INFO] [1772768081.002980175] [rtabmap.rtabmap]: rtabmap: subscribe_user_data = false
+[rtabmap-1] [INFO] [1772768081.002983550] [rtabmap.rtabmap]: rtabmap: subscribe_scan = false
+[rtabmap-1] [INFO] [1772768081.002987050] [rtabmap.rtabmap]: rtabmap: subscribe_scan_cloud = false
+[rtabmap-1] [INFO] [1772768081.002990466] [rtabmap.rtabmap]: rtabmap: subscribe_scan_descriptor = false
+[rtabmap-1] [INFO] [1772768081.002993883] [rtabmap.rtabmap]: rtabmap: queue_size      = 10
+[rtabmap-1] [INFO] [1772768081.002997466] [rtabmap.rtabmap]: rtabmap: qos_image       = 1
+[rtabmap-1] [INFO] [1772768081.003000800] [rtabmap.rtabmap]: rtabmap: qos_camera_info = 1
+[rtabmap-1] [INFO] [1772768081.003009216] [rtabmap.rtabmap]: rtabmap: qos_scan        = 1
+[rtabmap-1] [INFO] [1772768081.003014341] [rtabmap.rtabmap]: rtabmap: qos_odom        = 1
+[rtabmap-1] [INFO] [1772768081.003017800] [rtabmap.rtabmap]: rtabmap: qos_user_data   = 1
+[rtabmap-1] [INFO] [1772768081.003021091] [rtabmap.rtabmap]: rtabmap: approx_sync     = false
+[rtabmap-1] [INFO] [1772768081.021030591] [rtabmap.rtabmap]: Setup depth callback
+[rtabmap-1] [INFO] [1772768081.338914133] [rtabmap.rtabmap]: 
+[rtabmap-1] rtabmap subscribed to (exact sync):
+[rtabmap-1]    /synced/odom \
+[rtabmap-1]    /synced/rgb/image_raw \
+[rtabmap-1]    /synced/depth/image_raw \
+[rtabmap-1]    /synced/camera_info
+[rtabmap-1] [INFO] [1772768082.830154926] [rtabmap.rtabmap]: rtabmap (1): Rate=1.00s, Limit=0.000s, Conversion=0.0423s, RTAB-Map=0.8727s, Maps update=0.0542s pub=0.0045s (local map=1, WM=1)
+[rtabmap-1] [INFO] [1772768083.646798009] [rtabmap.rtabmap]: rtabmap (2): Rate=1.00s, Limit=0.000s, Conversion=0.1060s, RTAB-Map=0.4541s, Maps update=0.0007s pub=0.0024s (local map=1, WM=1)
+[rtabmap-1] [INFO] [1772768085.427552343] [rtabmap.rtabmap]: rtabmap (3): Rate=1.00s, Limit=0.000s, Conversion=0.1348s, RTAB-Map=0.5014s, Maps update=0.0005s pub=0.0003s (local map=2, WM=2)
+[rtabmap-1] [INFO] [1772768087.081287303] [rtabmap.rtabmap]: rtabmap (4): Rate=1.00s, Limit=0.000s, Conversion=0.0050s, RTAB-Map=0.2501s, Maps update=0.0004s pub=0.0008s (local map=3, WM=3)
+[rtabmap-1] [INFO] [1772768087.982674470] [rtabmap.rtabmap]: rtabmap (5): Rate=1.00s, Limit=0.000s, Conversion=0.0155s, RTAB-Map=0.3325s, Maps update=0.0003s pub=0.0004s (local map=4, WM=4)
+[rtabmap-1] [INFO] [1772768089.416886512] [rtabmap.rtabmap]: rtabmap (6): Rate=1.00s, Limit=0.000s, Conversion=0.0099s, RTAB-Map=0.1660s, Maps update=0.0127s pub=0.0002s (local map=5, WM=5)
+[rtabmap-1] [INFO] [1772768090.577535179] [rtabmap.rtabmap]: rtabmap (7): Rate=1.00s, Limit=0.000s, Conversion=0.0154s, RTAB-Map=0.3940s, Maps update=0.0066s pub=0.0007s (local map=6, WM=6)
+[rtabmap-1] [INFO] [1772768092.624374472] [rtabmap.rtabmap]: rtabmap (8): Rate=1.00s, Limit=0.000s, Conversion=0.0165s, RTAB-Map=0.3182s, Maps update=0.0003s pub=0.0004s (local map=7, WM=7)
+[rtabmap-1] [INFO] [1772768094.012482958] [rtabmap.rtabmap]: rtabmap (9): Rate=1.00s, Limit=0.000s, Conversion=0.0059s, RTAB-Map=0.7015s, Maps update=0.0010s pub=0.0007s (local map=7, WM=7)
+[rtabmap-1] [INFO] [1772768095.734789417] [rtabmap.rtabmap]: rtabmap (10): Rate=1.00s, Limit=0.000s, Conversion=0.0033s, RTAB-Map=0.4597s, Maps update=0.0006s pub=0.0015s (local map=8, WM=8)
+[rtabmap-1] [INFO] [1772768096.661088334] [rtabmap.rtabmap]: rtabmap (11): Rate=1.00s, Limit=0.000s, Conversion=0.0009s, RTAB-Map=0.5500s, Maps update=0.0423s pub=0.0026s (local map=9, WM=9)
+[rtabmap-1] [INFO] [1772768098.031884377] [rtabmap.rtabmap]: rtabmap (12): Rate=1.00s, Limit=0.000s, Conversion=0.0103s, RTAB-Map=0.2036s, Maps update=0.0003s pub=0.0002s (local map=9, WM=9)
+[rtabmap-1] [INFO] [1772768099.152277044] [rtabmap.rtabmap]: rtabmap (13): Rate=1.00s, Limit=0.000s, Conversion=0.0153s, RTAB-Map=0.2487s, Maps update=0.0005s pub=0.0004s (local map=10, WM=10)
+[rtabmap-1] [INFO] [1772768100.322559961] [rtabmap.rtabmap]: rtabmap (14): Rate=1.00s, Limit=0.000s, Conversion=0.0116s, RTAB-Map=0.2026s, Maps update=0.0090s pub=0.0019s (local map=11, WM=11)
+[rtabmap-1] [INFO] [1772768101.886203753] [rtabmap.rtabmap]: rtabmap (15): Rate=1.00s, Limit=0.000s, Conversion=0.0116s, RTAB-Map=0.4908s, Maps update=0.0009s pub=0.0004s (local map=12, WM=12)
+[rtabmap-1] [INFO] [1772768104.127080546] [rtabmap.rtabmap]: rtabmap (16): Rate=1.00s, Limit=0.000s, Conversion=0.0189s, RTAB-Map=0.5368s, Maps update=0.0007s pub=0.0004s (local map=13, WM=13)
+[rtabmap-1] [INFO] [1772768104.971436130] [rtabmap.rtabmap]: rtabmap (17): Rate=1.00s, Limit=0.000s, Conversion=0.0013s, RTAB-Map=0.5328s, Maps update=0.0008s pub=0.0005s (local map=14, WM=14)
+[rtabmap-1] [INFO] [1772768106.315851714] [rtabmap.rtabmap]: rtabmap (18): Rate=1.00s, Limit=0.000s, Conversion=0.0109s, RTAB-Map=0.5325s, Maps update=0.0006s pub=0.0005s (local map=14, WM=14)
+[rtabmap-1] [INFO] [1772768107.323529089] [rtabmap.rtabmap]: rtabmap (19): Rate=1.00s, Limit=0.000s, Conversion=0.1885s, RTAB-Map=0.5020s, Maps update=0.0003s pub=0.0002s (local map=15, WM=15)
+[rtabmap-1] [WARN] [1772768107.843833131] [rtabmap.rtabmap]: We received odometry message, but we cannot get the corresponding TF odom->camera_link at data stamp 1772768107.115796s (odom msg stamp is 1772768107.115796s). Make sure TF of odometry is also published to get more accurate pose estimation. This warning is only printed once.
+[rtabmap-1] [INFO] [1772768108.628098882] [rtabmap.rtabmap]: rtabmap (20): Rate=1.00s, Limit=0.000s, Conversion=0.0123s, RTAB-Map=0.5319s, Maps update=0.0018s pub=0.0067s (local map=16, WM=16)
+[rtabmap-1] [INFO] [1772768110.312369591] [rtabmap.rtabmap]: rtabmap (21): Rate=1.00s, Limit=0.000s, Conversion=0.0120s, RTAB-Map=0.5267s, Maps update=0.0061s pub=0.0003s (local map=17, WM=17)
+[rtabmap-1] [INFO] [1772768111.651648258] [rtabmap.rtabmap]: rtabmap (22): Rate=1.00s, Limit=0.000s, Conversion=0.1103s, RTAB-Map=0.4908s, Maps update=0.0043s pub=0.0002s (local map=18, WM=18)
+[rtabmap-1] [INFO] [1772768112.751671050] [rtabmap.rtabmap]: rtabmap (23): Rate=1.00s, Limit=0.000s, Conversion=0.0426s, RTAB-Map=0.3276s, Maps update=0.0002s pub=0.0002s (local map=19, WM=19)
+[rtabmap-1] [INFO] [1772768114.117087884] [rtabmap.rtabmap]: rtabmap (24): Rate=1.00s, Limit=0.000s, Conversion=0.0405s, RTAB-Map=0.5014s, Maps update=0.0023s pub=0.0005s (local map=20, WM=20)
+[rtabmap-1] [INFO] [1772768115.714703843] [rtabmap.rtabmap]: rtabmap (25): Rate=1.00s, Limit=0.000s, Conversion=0.0134s, RTAB-Map=0.3889s, Maps update=0.0005s pub=0.0004s (local map=21, WM=21)
+[rtabmap-1] [INFO] [1772768118.702633636] [rtabmap.rtabmap]: rtabmap (26): Rate=1.00s, Limit=0.000s, Conversion=0.0067s, RTAB-Map=0.7477s, Maps update=0.0003s pub=0.0002s (local map=22, WM=22)
+[rtabmap-1] [INFO] [1772768120.231242095] [rtabmap.rtabmap]: rtabmap (27): Rate=1.00s, Limit=0.000s, Conversion=0.0104s, RTAB-Map=0.3123s, Maps update=0.0005s pub=0.0002s (local map=23, WM=23)
+[rtabmap-1] [INFO] [1772768123.849163264] [rtabmap.rtabmap]: rtabmap (28): Rate=1.00s, Limit=0.000s, Conversion=0.1539s, RTAB-Map=3.0448s, Maps update=0.0048s pub=0.0085s (local map=24, WM=24)
+[rtabmap-1] [INFO] [1772768124.797948416] [rtabmap.rtabmap]: rtabmap (29): Rate=1.00s, Limit=0.000s, Conversion=0.0096s, RTAB-Map=0.7489s, Maps update=0.0019s pub=0.0003s (local map=25, WM=25)
+[rtabmap-1] [INFO] [1772768125.522262000] [rtabmap.rtabmap]: rtabmap (30): Rate=1.00s, Limit=0.000s, Conversion=0.0026s, RTAB-Map=0.6353s, Maps update=0.0004s pub=0.0003s (local map=26, WM=26)
+[rtabmap-1] [INFO] [1772768130.329066252] [rtabmap.rtabmap]: rtabmap (31): Rate=1.00s, Limit=0.000s, Conversion=0.0067s, RTAB-Map=1.9300s, Maps update=0.3186s pub=2.3081s (local map=26, WM=26)
+[rtabmap-1] [INFO] [1772768149.803869595] [rtabmap.rtabmap]: rtabmap (32): Rate=1.00s, Limit=0.000s, Conversion=0.0580s, RTAB-Map=2.7229s, Maps update=0.5834s pub=15.0457s (local map=27, WM=27)
+[rtabmap-1] [INFO] [1772768154.550096166] [rtabmap.rtabmap]: rtabmap (33): Rate=1.00s, Limit=0.000s, Conversion=0.2396s, RTAB-Map=2.3326s, Maps update=0.3117s pub=0.9896s (local map=28, WM=28)
+[rtabmap-1] [INFO] [1772768158.788192793] [rtabmap.rtabmap]: rtabmap (34): Rate=1.00s, Limit=0.000s, Conversion=0.1124s, RTAB-Map=2.2458s, Maps update=0.0887s pub=0.5643s (local map=29, WM=29)
+[rtabmap-1] [INFO] [1772768166.801821630] [rtabmap.rtabmap]: rtabmap (35): Rate=1.00s, Limit=0.000s, Conversion=0.1105s, RTAB-Map=2.8191s, Maps update=0.0893s pub=3.4949s (local map=30, WM=30)
+[rtabmap-1] [INFO] [1772768179.565888053] [rtabmap.rtabmap]: rtabmap (36): Rate=1.00s, Limit=0.000s, Conversion=0.0593s, RTAB-Map=9.3386s, Maps update=1.1281s pub=1.0949s (local map=31, WM=31)
+[rtabmap-1] [INFO] [1772768189.683944460] [rtabmap.rtabmap]: rtabmap (37): Rate=1.00s, Limit=0.000s, Conversion=0.0973s, RTAB-Map=7.9685s, Maps update=0.3913s pub=0.5517s (local map=32, WM=32)
+[rtabmap-1] [INFO] [1772768192.398542212] [rtabmap.rtabmap]: rtabmap (38): Rate=1.00s, Limit=0.000s, Conversion=0.0448s, RTAB-Map=1.6614s, Maps update=0.0557s pub=0.0018s (local map=32, WM=32)
+[rtabmap-1] [INFO] [1772768202.986882758] [rtabmap.rtabmap]: rtabmap (39): Rate=1.00s, Limit=0.000s, Conversion=0.1441s, RTAB-Map=2.0039s, Maps update=0.0251s pub=0.0013s (local map=32, WM=32)
+[rtabmap-1] [INFO] [1772768211.414947971] [rtabmap.rtabmap]: rtabmap (40): Rate=1.00s, Limit=0.000s, Conversion=0.0598s, RTAB-Map=6.3429s, Maps update=0.4993s pub=1.0818s (local map=33, WM=33)
+[rtabmap-1] [INFO] [1772768218.393371418] [rtabmap.rtabmap]: rtabmap (41): Rate=1.00s, Limit=0.000s, Conversion=0.1414s, RTAB-Map=3.7388s, Maps update=0.3284s pub=0.5679s (local map=34, WM=34)
+[rtabmap-1] [INFO] [1772768223.465639587] [rtabmap.rtabmap]: rtabmap (42): Rate=1.00s, Limit=0.000s, Conversion=0.1896s, RTAB-Map=3.5189s, Maps update=0.5206s pub=0.3074s (local map=35, WM=35)
+[rtabmap-1] [INFO] [1772768227.650345005] [rtabmap.rtabmap]: rtabmap (43): Rate=1.00s, Limit=0.000s, Conversion=0.0257s, RTAB-Map=2.7551s, Maps update=0.3802s pub=0.6992s (local map=36, WM=36)
+[rtabmap-1] [INFO] [1772768231.979099216] [rtabmap.rtabmap]: rtabmap (44): Rate=1.00s, Limit=0.000s, Conversion=0.0842s, RTAB-Map=2.7112s, Maps update=0.3891s pub=0.3146s (local map=37, WM=37)
+[rtabmap-1] [INFO] [1772768238.331012136] [rtabmap.rtabmap]: rtabmap (45): Rate=1.00s, Limit=0.000s, Conversion=0.0509s, RTAB-Map=4.0298s, Maps update=0.3907s pub=0.6869s (local map=38, WM=38)
+[rtabmap-1] [INFO] [1772768244.256818847] [rtabmap.rtabmap]: rtabmap (46): Rate=1.00s, Limit=0.000s, Conversion=0.0577s, RTAB-Map=4.4662s, Maps update=0.1303s pub=0.8721s (local map=39, WM=39)
+[rtabmap-1] [INFO] [1772768249.460918252] [rtabmap.rtabmap]: rtabmap (47): Rate=1.00s, Limit=0.000s, Conversion=0.0628s, RTAB-Map=3.4901s, Maps update=0.2047s pub=0.3666s (local map=40, WM=40)
+[rtabmap-1] [INFO] [1772768259.964337132] [rtabmap.rtabmap]: rtabmap (48): Rate=1.00s, Limit=0.000s, Conversion=0.1862s, RTAB-Map=5.1837s, Maps update=0.8455s pub=1.8107s (local map=41, WM=41)
+[rtabmap-1] [ WARN] (2026-03-06 03:35:07.834) MsgConversion.cpp:1758::getTransform() (can transform odom -> camera_link?) Lookup would require extrapolation into the future.  Requested time 1772768107.115796 but the latest data is at time 1772768106.242804, when looking up transform from frame [camera_link] to frame [odom]. canTransform returned after 0.288275 timeout was 0.2. (wait_for_transform=0.200000)
+[rtabmap-1] [ WARN] (2026-03-06 03:35:16.109) MsgConversion.cpp:1758::getTransform() (can transform odom -> camera_link?) Lookup would require extrapolation into the future.  Requested time 1772768115.265408 but the latest data is at time 1772768114.525650, when looking up transform from frame [camera_link] to frame [odom]. canTransform returned after 0.206151 timeout was 0.2. (wait_for_transform=0.200000)
+[rtabmap-1] [ WARN] (2026-03-06 03:35:17.945) MsgConversion.cpp:1758::getTransform() (can transform odom -> camera_link?) Lookup would require extrapolation into the future.  Requested time 1772768117.097591 but the latest data is at time 1772768114.525650, when looking up transform from frame [camera_link] to frame [odom]. canTransform returned after 0.204068 timeout was 0.2. (wait_for_transform=0.200000)
+[rtabmap-1] [ WARN] (2026-03-06 03:35:19.907) MsgConversion.cpp:1758::getTransform() (can transform odom -> camera_link?) Lookup would require extrapolation into the future.  Requested time 1772768118.973372 but the latest data is at time 1772768114.525650, when looking up transform from frame [camera_link] to frame [odom]. canTransform returned after 0.211585 timeout was 0.2. (wait_for_transform=0.200000)
+[rtabmap-1] [ WARN] (2026-03-06 03:35:20.636) MsgConversion.cpp:1758::getTransform() (can transform odom -> camera_link?) Lookup would require extrapolation into the future.  Requested time 1772768120.126806 but the latest data is at time 1772768115.945647, when looking up transform from frame [camera_link] to frame [odom]. canTransform returned after 0.209412 timeout was 0.2. (wait_for_transform=0.200000)
+[rtabmap-1] [ WARN] (2026-03-06 03:35:27.658) MapsManager.cpp:460::updateMapCaches() Many occupancy grids should be loaded (~26), this may take a while to update the map(s)...
+[rtabmap-1] [ WARN] (2026-03-06 03:35:27.941) MapsManager.cpp:696::updateMapCaches() Map(s) updated! (0.283329 s)
+[rtabmap-1] [ WARN] (2026-03-06 03:35:27.945) MapsManager.cpp:890::publishMaps() Graph has changed! The whole cloud is regenerated.
+[rtabmap-1] [ WARN] (2026-03-06 03:35:30.233) MapsManager.cpp:1374::publishMaps() Grid map is empty! (local maps=26)
+[rtabmap-1] [ WARN] (2026-03-06 03:35:31.350) MsgConversion.cpp:1758::getTransform() (can transform odom -> camera_link?) Lookup would require extrapolation into the future.  Requested time 1772768130.309582 but the latest data is at time 1772768126.345301, when looking up transform from frame [camera_link] to frame [odom]. canTransform returned after 0.203707 timeout was 0.2. (wait_for_transform=0.200000)
+[rtabmap-1] [ WARN] (2026-03-06 03:35:34.160) MapsManager.cpp:466::updateMapCaches() Many clouds should be added to octomap (~27), this may take a while to update the map(s)...
+[rtabmap-1] [ WARN] (2026-03-06 03:35:34.695) MapsManager.cpp:696::updateMapCaches() Map(s) updated! (0.534970 s)
+[rtabmap-1] [ WARN] (2026-03-06 03:35:55.618) MsgConversion.cpp:1758::getTransform() (can transform odom -> camera_link?) Lookup would require extrapolation into the future.  Requested time 1772768154.509134 but the latest data is at time 1772768152.201484, when looking up transform from frame [camera_link] to frame [odom]. canTransform returned after 0.205357 timeout was 0.2. (wait_for_transform=0.200000)
+[rtabmap-1] [ WARN] (2026-03-06 03:37:31.762) MsgConversion.cpp:1758::getTransform() (can transform odom -> camera_link?) Lookup would require extrapolation into the future.  Requested time 1772768250.704500 but the latest data is at time 1772768249.489283, when looking up transform from frame [camera_link] to frame [odom]. canTransform returned after 0.201289 timeout was 0.2. (wait_for_transform=0.200000)
+[rtabmap-1] [INFO] [1772768270.349440845] [rtabmap.rtabmap]: rtabmap (49): Rate=1.00s, Limit=0.000s, Conversion=0.1112s, RTAB-Map=7.1302s, Maps update=0.1398s pub=2.1626s (local map=42, WM=42)
+[rtabmap-1] [INFO] [1772768281.574459460] [rtabmap.rtabmap]: rtabmap (50): Rate=1.00s, Limit=0.000s, Conversion=0.2915s, RTAB-Map=8.2586s, Maps update=0.7835s pub=0.9024s (local map=43, WM=43)
+[rtabmap-1] [INFO] [1772768290.135997798] [rtabmap.rtabmap]: rtabmap (51): Rate=1.00s, Limit=0.000s, Conversion=0.0515s, RTAB-Map=6.5294s, Maps update=0.3531s pub=0.8392s (local map=44, WM=44)
+[rtabmap-1] [INFO] [1772768305.923031222] [rtabmap.rtabmap]: rtabmap (52): Rate=1.00s, Limit=0.000s, Conversion=0.2820s, RTAB-Map=8.2145s, Maps update=1.2251s pub=4.8780s (local map=45, WM=45)
+[rtabmap-1] [INFO] [1772768313.196685710] [rtabmap.rtabmap]: rtabmap (53): Rate=1.00s, Limit=0.000s, Conversion=0.5300s, RTAB-Map=4.8602s, Maps update=0.1396s pub=0.0264s (local map=45, WM=45)
+^C[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[rtabmap-1] [INFO] [1772768459.362364096] [rclcpp]: signal_handler(signal_value=2)
+[ERROR] [rtabmap-1]: process[rtabmap-1] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+[INFO] [rtabmap-1]: sending signal 'SIGTERM' to process[rtabmap-1]
+[rtabmap-1] [INFO] [1772768473.906320089] [rtabmap.rtabmap]: Parameters are not saved (No configuration file provided...)
+[ERROR] [rtabmap-1]: process has died [pid 10173, exit code -15, cmd '/opt/ros/foxy/lib/rtabmap_slam/rtabmap --delete_db_on_start --ros-args -r __ns:=/rtabmap --params-file /tmp/launch_params_5b0qsrx6 --params-file /tmp/launch_params_apw15yg8 -r rgb/image:=/synced/rgb/image_raw -r depth/image:=/synced/depth/image_raw -r rgb/camera_info:=/synced/camera_info -r rgbd_image:=rgbd_image_relay -r left/image_rect:=/stereo_camera/left/image_rect_color -r right/image_rect:=/stereo_camera/right/image_rect -r left/camera_info:=/stereo_camera/left/camera_info -r right/camera_info:=/stereo_camera/right/camera_info -r scan:=/scan -r scan_cloud:=/scan_cloud -r user_data:=/user_data -r user_data_async:=/user_data_async -r gps/fix:=/gps/fix -r tag_detections:=/tag_detections -r fiducial_transforms:=/fiducial_transforms -r odom:=/synced/odom -r imu:=/imu/data'].
+[rtabmap-1] [ WARN] (

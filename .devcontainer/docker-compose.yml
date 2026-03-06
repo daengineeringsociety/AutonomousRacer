@@ -8,10 +8,11 @@ services:
       - ~/.gitconfig:/home/daes/.gitconfig:ro
     environment:
       - ROS_DOMAIN_ID=42
-    ports:
-      # Force bind to all Mac interfaces explicitly 
-      - "8765:8765/udp"
-      - "0.0.0.0:8765:8765/udp"
+    network_mode: host
+    # ports:
+    #   # Force bind to all Mac interfaces explicitly 
+    #   - "8765:8765/udp"
+    #   - "0.0.0.0:8765:8765/udp"
     privileged: true
     command: sleep infinity
     user: daes
