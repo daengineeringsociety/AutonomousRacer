@@ -1,0 +1,18 @@
+services:
+  deepracer-access:
+    build:
+      context: .
+      dockerfile: docker/deepracer-access/Dockerfile
+    container_name: deepracer-access
+    network_mode: host
+    stdin_open: true
+    tty: true
+    working_dir: /workspace
+    environment:
+      DEEPRACER_HOST: ${DEEPRACER_HOST}
+      DEEPRACER_USER: ${DEEPRACER_USER:-ubuntu}
+      DEEPRACER_PORT: ${DEEPRACER_PORT:-22}
+      DEEPRACER_KEY: ${DEEPRACER_KEY:-}
+    volumes:
+      - ./:/workspace
+      - ${HOME}/.ssh:/home/druser/.ssh:ro
