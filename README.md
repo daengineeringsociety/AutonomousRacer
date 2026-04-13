@@ -1,4 +1,4 @@
-# Autonomous ARKit Deepracer - De Anza Engineering Society
+# Autonomous ARKit Deepracer - De Anza Engineering Society 
 
 [![ROS 2 - Foxy](https://img.shields.io/badge/ROS_2-Foxy-22314E?logo=ros)](https://docs.ros.org/en/foxy/index.html)
 [![Swift - ARKit](https://img.shields.io/badge/Swift-ARKit-F05138?logo=swift)](https://developer.apple.com/augmented-reality/)
@@ -7,7 +7,9 @@
 
 ## Project Lead: Ayan Syed
 
-<img width="200" height="200" alt="daesLogo" src="https://github.com/user-attachments/assets/8f3ab69f-a857-4857-ba3f-1cf3e00f745e" />
+https://github.com/user-attachments/assets/a10af9fe-2d20-4095-ba1a-e8fc7d5d6b5e
+
+
  
 
 The **De Anza Engineering Society (DAES) AutonomousRacer** project transforms a standard AWS DeepRacer chassis into a fully autonomous, ARKit-tracked, ROS 2-driven Ackermann vehicle. 
