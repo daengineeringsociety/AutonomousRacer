@@ -6,6 +6,8 @@ services:
     volumes:
       - ..:/workspaces/deepracer_project:cached
       - ~/.gitconfig:/home/daes/.gitconfig:ro
+      - /sys/class/pwm:sys/class/pwm
+      - /dev:/dev
     environment:
       - ROS_DOMAIN_ID=42
     network_mode: host

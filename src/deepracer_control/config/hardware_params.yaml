@@ -1,0 +1,19 @@
+cmd_vel_node:
+  ros__parameters:
+    # ---------------------------
+    # Software Tuning (Deadbands)
+    # ---------------------------
+    angular_scaler: 1.12
+    linear_multiplier: 2.0
+    forward_deadband: 0.70
+    reverse_deadband: 0.80
+
+    # ---------------------------
+    # Hardware Tuning (PWM Limits)
+    # ---------------------------
+    throttle_neutral: 1500000
+    throttle_safe_min: 1330000  # Max safe forward
+    throttle_safe_max: 1580000  # Max safe reverse
+    steering_neutral: 1500000
+    steering_min: 1000000
+    steering_max: 2000000

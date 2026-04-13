@@ -1,0 +1,7 @@
+image: downstairs.png
+mode: trinary
+resolution: 0.018
+origin: [-4.78, -9.0, 0]
+negate: 0
+occupied_thresh: 0.85
+free_thresh: 0.35
